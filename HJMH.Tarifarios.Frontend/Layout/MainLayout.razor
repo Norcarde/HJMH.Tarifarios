@@ -1,16 +1,30 @@
 ﻿@inherits LayoutComponentBase
-<div class="page">
-    <div class="sidebar">
-        <NavMenu />
-    </div>
+<!-- Begin page -->
+<div id="app-layout">
 
-    <main>
-        <div class="top-row px-4">
-            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
-        </div>
 
-        <article class="content px-4">
+    <Topbar/>
+    <LeftSidebar/>
+    <!-- ============================================================== -->
+    <!-- Start Page Content here -->
+    <!-- ============================================================== -->
+
+    <div class="content-page">
+        <div class="content">
+
+            <!-- Start Content-->
             @Body
-        </article>
-    </main>
+            <!-- container-fluid -->
+
+        </div> <!-- content -->
+        <Footer />
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Page content -->
+    <!-- ============================================================== -->
+
+
 </div>
+<!-- END wrapper -->
+<!-- App js-->
+<script src="assets/js/app.js"></script>

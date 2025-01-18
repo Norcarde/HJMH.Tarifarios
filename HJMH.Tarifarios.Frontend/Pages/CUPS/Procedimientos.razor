@@ -1,0 +1,64 @@
+﻿@page "/Cups"
+<div class="container-fluid">
+    <div class="py-3 d-flex align-items-sm-center flex-sm-row flex-column">
+        <div class="flex-grow-1">
+            <h4 class="fs-18 fw-semibold m-0">Clasificación Unica de Procedimientos en Salud - (CUPS)</h4>
+        </div>
+
+        <div class="text-end">
+            <ol class="breadcrumb m-0 py-0">
+                <li class="breadcrumb-item"><a href="javascript: void(0);">Pages</a></li>
+                <li class="breadcrumb-item active">Starter</li>
+            </ol>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-xl-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="d-flex align-items-center">
+                        <h5 class="card-title mb-0">Resolución 2641 de 2024 del 23 de diciembre de 2024</h5>
+                        @*  <div class="ms-auto">
+                            <button class="btn btn-sm bg-light border dropdown-toggle fw-medium" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">This Month<i class="mdi mdi-chevron-down ms-1 fs-14"></i></button>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <a class="dropdown-item" href="#">This Month</a>
+                                <a class="dropdown-item" href="#">Last Month</a>
+                            </div>
+                        </div> *@
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p>La Clasificación Única de Procedimientos en Salud (CUPS) es el sistema oficial que organiza de manera lógica y detallada todos los procedimientos médicos que se realizan en el país. Su propósito principal es garantizar la interoperabilidad y la estandarización de datos, mediante la asignación de un código único y una descripción validada por expertos, lo que facilita el manejo de la información y la comunicación entre las entidades del sistema de salud.</p>
+                    <h5>Estructura de la CUPS 2025</h5>
+                    <p>La CUPS 2025 conserva una estructura lógica y práctica, dividida en 24 capítulos organizados en dos grandes secciones:</p>
+                    <ol class="">
+                        <li><strong>Sección 00: Procedimientos quirúrgicos: </strong>Comprende los capítulos 01 al 14, ordenados por sistemas u órganos anatómicos y fisiológicos.</li>
+                        <li><strong>Sección 01: Procedimientos no quirúrgicos: </strong>Incluye los capítulos 15 al 24, donde el capítulo 24 agrupa procedimientos misceláneos como intervenciones en promoción de la salud, prevención de la enfermedad, administración de quimioterapia, entre otros.</li>
+                    </ol>
+                    <p>Cada procedimiento está identificado por un código alfanumérico único, compuesto por seis caracteres jerárquicos que especifican el grupo, subgrupo, categoría y subcategoría del procedimiento.</p>
+                    <p>La actualización incluye varios anexos técnicos, fundamentales para su implementación y uso:</p>
+                    <ol class="">
+                        <li><strong>Manual de uso:</strong> Instrucciones detalladas sobre la correcta utilización de la CUPS.</li>
+                        <li><strong>Lista tabular:</strong> Estructura jerárquica y codificación de los procedimientos.</li>
+                        <li><strong>Códigos especiales para reporte de población indígena.</strong></li>
+                        <li><strong>Códigos para el reporte de otras prestaciones en salud.</strong></li>
+                        <li><strong>Códigos para el reporte de intervenciones colectivas.</strong></li>
+                        <li><strong>Códigos para la gestión de información en salud pública.</strong></li>
+                        <li><strong>Códigos relacionados con procedimientos sobre condiciones y medio ambiente de trabajo.</strong></li>
+                    </ol>
+                    <br />
+                    <div class="row mb-3">
+                        <label class="col-12 col-md-2 col-form-label">Procedimiento o CUPS</label> <!-- Ajusta las clases para ser responsivas -->
+                        <div class="col-12 col-md-8">
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="col-12 col-md-2 mt-2 mt-md-0">
+                            <!-- Añade clases para margen superior en dispositivos pequeños -->
+                            <button type="submit" class="btn btn-primary w-100">Buscar</button> <!-- Usa 'w-100' para asegurar el ancho completo -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
