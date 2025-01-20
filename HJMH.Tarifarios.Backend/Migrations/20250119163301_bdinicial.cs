@@ -5,7 +5,7 @@
 namespace HJMH.Tarifarios.Backend.Migrations
 {
     /// <inheritdoc />
-    public partial class initial3 : Migration
+    public partial class bdinicial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -14,7 +14,9 @@ namespace HJMH.Tarifarios.Backend.Migrations
                 name: "CUPS",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CUPS = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Descripcion = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Seccion = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Capitulo = table.Column<string>(type: "nvarchar(max)", nullable: true),

@@ -1,4 +1,7 @@
 ﻿@page "/Cups"
+@using HJMH.Tarifarios.Shared.Entities
+
+
 <div class="container-fluid">
     <div class="py-3 d-flex align-items-sm-center flex-sm-row flex-column">
         <div class="flex-grow-1">
@@ -7,8 +10,8 @@
 
         <div class="text-end">
             <ol class="breadcrumb m-0 py-0">
-                <li class="breadcrumb-item"><a href="javascript: void(0);">Pages</a></li>
-                <li class="breadcrumb-item active">Starter</li>
+                <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+                <li class="breadcrumb-item active">CUPS</li>
             </ol>
         </div>
     </div>
@@ -18,13 +21,6 @@
                 <div class="card-header">
                     <div class="d-flex align-items-center">
                         <h5 class="card-title mb-0">Resolución 2641 de 2024 del 23 de diciembre de 2024</h5>
-                        @*  <div class="ms-auto">
-                            <button class="btn btn-sm bg-light border dropdown-toggle fw-medium" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">This Month<i class="mdi mdi-chevron-down ms-1 fs-14"></i></button>
-                            <div class="dropdown-menu dropdown-menu-end">
-                                <a class="dropdown-item" href="#">This Month</a>
-                                <a class="dropdown-item" href="#">Last Month</a>
-                            </div>
-                        </div> *@
                     </div>
                 </div>
                 <div class="card-body">
@@ -48,14 +44,65 @@
                     </ol>
                     <br />
                     <div class="row mb-3">
-                        <label class="col-12 col-md-2 col-form-label">Procedimiento o CUPS</label> <!-- Ajusta las clases para ser responsivas -->
+                        <label class="col-12 col-md-2 col-form-label">Procedimiento o CUPS</label>
                         <div class="col-12 col-md-8">
-                            <input type="text" class="form-control">
+                            <InputText class="form-control" @bind-Value="@SearchText" @onkeyup="@HandleKeyDown" />
                         </div>
                         <div class="col-12 col-md-2 mt-2 mt-md-0">
-                            <!-- Añade clases para margen superior en dispositivos pequeños -->
-                            <button type="submit" class="btn btn-primary w-100">Buscar</button> <!-- Usa 'w-100' para asegurar el ancho completo -->
+                            <button type="submit" class="btn btn-primary w-100" @onclick="LoadCups">Buscar</button>
                         </div>
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        @if (CUPs != null || CUPs!.Count > 0)
+                        {
+                            <SfGrid DataSource="@CUPs" Height="550" AllowPaging="true" AllowTextWrap="true" GridLines="GridLine.Default">
+                                <GridPageSettings PageCount="5"></GridPageSettings>
+                                <GridTemplates>
+                                    <RowTemplate>
+                                        @{
+                                            var cupsList = (context as ClasificacionUnicaProcedimientos);
+                                            <td>
+                                                <center><b>@cupsList!.CUPS </b></center>
+                                            </td>
+                                            <td class="details">
+                                                <table class="CardTable" >
+
+                                                    <tbody>
+                                                        <tr>
+                                                            <td><b>@cupsList.Descripcion </b></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="">
+                                                                @cupsList.QueEs<br />
+                                                                <strong>Seccion: </strong>@cupsList.Seccion, <br />
+                                                                <strong>Capitulo: </strong>@cupsList.Capitulo, <br />
+                                                                <strong>Grupo: </strong>@cupsList.DescripcionGrupo,<br />
+                                                                <strong>SubGrupo: </strong>@cupsList.DescripcionSubgrupo<br /><br />
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                            <td class="">
+                                                <center>
+                                                    <a href="/Homologador/@cupsList.Id" class="btn btn-outline-danger">
+                                                        Homologar
+                                                    </a>
+                                                </center>
+                                            </td>
+                                        }
+                                    </RowTemplate>
+                                </GridTemplates>
+                                <GridColumns>
+                                    <GridColumn Field=@nameof(ClasificacionUnicaProcedimientos.CUPS) HeaderText="CUPS" Width="20" TextAlign="TextAlign.Center"> </GridColumn>
+                                    <GridColumn Field=@nameof(ClasificacionUnicaProcedimientos.Descripcion) HeaderText="Descripcion" HeaderTextAlign="TextAlign.Left" Width="200" TextAlign="TextAlign.Left"></GridColumn>
+                                    <GridColumn HeaderText="" HeaderTextAlign="TextAlign.Center" Width="30" TextAlign="TextAlign.Center"></GridColumn>
+                                </GridColumns>
+                            </SfGrid>
+                        }
                     </div>
                 </div>
             </div>

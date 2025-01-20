@@ -51,7 +51,7 @@ namespace HJMH.Tarifarios.Backend.Repositories.Implementations
             try
             {
                 var cups = await _context.CUPS
-                    .Where(s => EF.Functions.Like(s.Id, $"%{codigoCUPS}%") ||
+                    .Where(s => EF.Functions.Like(s.CUPS, $"%{codigoCUPS}%") ||
                                 (s.Descripcion != null && EF.Functions.Like(s.Descripcion, $"%{codigoCUPS}%")))
                     .OrderBy(c => c.Id)
                     .ToListAsync();

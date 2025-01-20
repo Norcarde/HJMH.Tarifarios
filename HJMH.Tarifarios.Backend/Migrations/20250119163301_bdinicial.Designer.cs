@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HJMH.Tarifarios.Backend.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250118143942_initial3")]
-    partial class initial3
+    [Migration("20250119163301_bdinicial")]
+    partial class bdinicial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,8 +26,14 @@ namespace HJMH.Tarifarios.Backend.Migrations
 
             modelBuilder.Entity("HJMH.Tarifarios.Shared.Entities.ClasificacionUnicaProcedimientos", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CUPS")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Capitulo")
                         .HasColumnType("nvarchar(max)");

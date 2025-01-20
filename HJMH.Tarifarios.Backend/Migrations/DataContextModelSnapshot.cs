@@ -23,8 +23,14 @@ namespace HJMH.Tarifarios.Backend.Migrations
 
             modelBuilder.Entity("HJMH.Tarifarios.Shared.Entities.ClasificacionUnicaProcedimientos", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CUPS")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Capitulo")
                         .HasColumnType("nvarchar(max)");

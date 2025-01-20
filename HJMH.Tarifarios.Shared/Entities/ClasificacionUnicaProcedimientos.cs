@@ -5,8 +5,9 @@ namespace HJMH.Tarifarios.Shared.Entities
     public class ClasificacionUnicaProcedimientos
     {
         [Key]
-        public string Id { get; set; } = null!;
+        public int Id { get; set; }
 
+        public string? CUPS { get; set; } = null!;
         public string? Descripcion { get; set; }
         public string? Seccion { get; set; }
         public string? Capitulo { get; set; }
