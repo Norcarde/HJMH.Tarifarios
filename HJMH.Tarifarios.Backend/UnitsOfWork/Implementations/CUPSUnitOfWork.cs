@@ -27,5 +27,12 @@ namespace HJMH.Tarifarios.Backend.UnitsOfWork.Implementations
         /// <param name="codigoCUPS">El código CUPS para buscar.</param>
         /// <returns>Una tarea que representa la operación asincrónica. El resultado contiene una respuesta de acción con una enumeración de ClasificacionUnicaProcedimientos.</returns>
         public async Task<ActionResponse<IEnumerable<ClasificacionUnicaProcedimientos>>> GetCUPSAsync(string codigoCUPS) => await _cupsRepository.GetCUPSAsync(codigoCUPS);
+
+        /// <summary>
+        /// Obtiene una lista de Homologado basada en el código CUPS proporcionado.
+        /// </summary>
+        /// <param name="codigoCUPS">El código CUPS para buscar.</param>
+        /// <returns>Una tarea que representa la operación asincrónica. El resultado contiene una respuesta de acción con una enumeración de Homologado.</returns>
+        public async Task<ActionResponse<IEnumerable<Homologado>>> GetCupsHomologadorAsync(string codigoCUPS) => await _cupsRepository.GetCupsHomologadorAsync(codigoCUPS);
     }
 }

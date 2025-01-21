@@ -89,6 +89,59 @@ namespace HJMH.Tarifarios.Backend.Repositories.Implementations
             }
         }
 
+        /// <returns>Una tarea que representa la operación asincrónica. El resultado contiene una respuesta de acción con una enumeración de Homologado.</returns>
+        public async Task<ActionResponse<IEnumerable<Homologado>>> GetCupsHomologadorAsync(string codigoCups)
+        {
+            if (string.IsNullOrWhiteSpace(codigoCups))
+            {
+                return new ActionResponse<IEnumerable<Homologado>>
+                {
+                    WasSuccess = false,
+                    Message = "El código CUPS no puede estar vacío o ser solo espacios en blanco."
+                };
+            }
+
+            try
+            {
+                var homologador = await (from c in _context.CUPS
+                                         join h in _context.Homologados on c.Id equals h.CupsId into homologadorGroup
+                                         from h in homologadorGroup.DefaultIfEmpty()
+                                         join s in _context.Soat on h.SoatId equals s.Id into soatGroup
+                                         from s in soatGroup.DefaultIfEmpty()
+                                         where c.CUPS == codigoCups
+                                         select new Homologado
+                                         {
+                                             CupsId = c.Id,
+                                             Cups = c,
+                                             SoatId = s.Id,
+                                             Soat = s
+                                         }).ToListAsync();
+
+                if (!homologador.Any())
+                {
+                    return new ActionResponse<IEnumerable<Homologado>>
+                    {
+                        WasSuccess = false,
+                        Message = "No se encontraron registros de CUPS con el código proporcionado."
+                    };
+                }
+
+                return new ActionResponse<IEnumerable<Homologado>>
+                {
+                    WasSuccess = true,
+                    Result = homologador
+                };
+            }
+            catch (Exception ex)
+            {
+                return new ActionResponse<IEnumerable<Homologado>>
+                {
+                    WasSuccess = false,
+                    Message = $"Ocurrió un error al intentar obtener los registros de homologación: {ex.Message}"
+                };
+            }
+        }
+
         #endregion Métodos Públicos
     }
 }

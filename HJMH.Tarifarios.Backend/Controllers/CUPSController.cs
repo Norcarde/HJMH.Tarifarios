@@ -64,6 +64,25 @@ namespace HJMH.Tarifarios.Backend.Controllers
             return Ok(response.Result);
         }
 
+        [HttpGet("Homologador")]
+        public async Task<IActionResult> GetCupsHomologadorAsync([FromQuery] string codigoCUPS)
+        {
+            if (string.IsNullOrWhiteSpace(codigoCUPS) || codigoCUPS.Length < 6)
+            {
+                return BadRequest(new ActionResponse<IEnumerable<Homologado>>
+                {
+                    WasSuccess = false,
+                    Message = "El código o descripción del CUPS no puede estar vacío y debe tener al menos 6 caracteres."
+                });
+            }
+            var response = await _cupsUnitOfWork.GetCupsHomologadorAsync(codigoCUPS);
+            if (!response.WasSuccess)
+            {
+                return NotFound(response.Message);
+            }
+            return Ok(response.Result);
+        }
+
         #endregion Methods
     }
 }

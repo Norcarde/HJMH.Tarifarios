@@ -32,5 +32,6 @@ namespace HJMH.Tarifarios.Shared.Entities
         public string? Cobertura { get; set; }
         public string? CoberturaPlanBeneficiosUPC { get; set; }
         public string? QueEs { get; set; }
+        public ICollection<Homologado> Homologadores { get; set; } = new List<Homologado>();
     }
 }
