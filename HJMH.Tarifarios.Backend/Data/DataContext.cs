@@ -24,6 +24,11 @@ namespace HJMH.Tarifarios.Backend.Data
         public DbSet<Homologado> Homologados { get; set; }
 
         /// <summary>
+        /// Obtiene o establece el conjunto de datos de Pacientes Emssanar.
+        /// </summary>
+        public DbSet<PacienteEmssanar> PacientesEmssanar { get; set; }
+
+        /// <summary>
         /// Inicializa una nueva instancia de la clase <see cref="DataContext"/>.
         /// </summary>
         /// <param name="options">Las opciones para este contexto.</param>
@@ -51,6 +56,10 @@ namespace HJMH.Tarifarios.Backend.Data
                 .HasOne(h => h.Soat)
                 .WithMany(s => s.Homologadores)
                 .HasForeignKey(h => h.SoatId);
+
+            modelBuilder.Entity<PacienteEmssanar>()
+                .Property(p => p.FechaBaseDatos)
+                .HasDefaultValueSql("GETDATE()");
         }
     }
 }
