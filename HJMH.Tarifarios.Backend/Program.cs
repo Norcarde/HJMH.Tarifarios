@@ -17,9 +17,11 @@ builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer("name=DefaultConn
 
 // Register repositories
 builder.Services.AddScoped<ICUPSRepository, CUPSRepository>();
+builder.Services.AddScoped<IPacientesRepository, PacientesRepository>();
 
 // Register units of work
 builder.Services.AddScoped<ICUPSUnitOfWork, CUPSUnitOfWork>();
+builder.Services.AddScoped<IPacientesUnitOfWork, PacientesUnitOfWork>();
 
 var app = builder.Build();
 // Configure the HTTP request pipeline.
